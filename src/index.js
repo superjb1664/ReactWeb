@@ -4,7 +4,7 @@ import ReactDOM from "react-dom"
 //component file
 import RouteMission2 from "./components/RouteMission2"
 import "./App.css"
-
+import 'bootstrap/dist/css/bootstrap.min.css';
 ReactDOM.render(
     <React.StrictMode>
         <RouteMission2 />

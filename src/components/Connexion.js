@@ -1,20 +1,16 @@
 import React from "react"
 
 import Header from "./Header"
-class Connexion extends React.Component {
 
 
-    state = {
-        title: "",
-    }
+const Connexion = props => {
 
-    onChange = e => {
-        this.setState({
-            [e.target.name]: e.target.value,
-        })
-    }
 
-    handleSubmit = e => {
+
+
+
+
+    const handleSubmit = e => {
         e.preventDefault();
         this.props.addTodoProps(this.state.title);
         this.setState({
@@ -23,11 +19,9 @@ class Connexion extends React.Component {
     };
 
 
-    render() {
         return (
             <div className="container">
-                <Header/>
-                <form onSubmit={this.handleSubmit} className="form-container">
+                <form onSubmit={handleSubmit} className="form-container">
                     <h3>Connexion</h3>
                     <table>
                         <tbody>
@@ -59,6 +53,6 @@ class Connexion extends React.Component {
             </div>
 
         )
-    }
+
 }
 export default Connexion

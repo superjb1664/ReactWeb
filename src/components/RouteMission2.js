@@ -1,5 +1,6 @@
 /*Les bibliothèques liées à React*/
-import React from "react"
+import React, { useState } from "react"
+
 import {v4 as uuidv4} from "uuid";
 import {BrowserRouter, Route, Switch } from "react-router-dom"
 
@@ -10,31 +11,36 @@ import Connexion from "./Connexion"
 /*Les pages statiques*/
 import About from "../pages/About"
 import NotMatch from "../pages/NotMatch"
-import Navbar from "./Navbar"
+import BarDeNavigation from "./BarDeNavigation"
 
-class RouteMission2 extends React.Component {
-    state = {
-        indiceNav: 1
-    };
+const RouteMission2 = () => {
+    const [idSession, setIdSession] = useState(0);
+
+    const [etatNavigation, setEtatNavigation] = useState(-1); //-1 Non connecté
+
+    const [ateliers, setAteliers] = useState([]);
 
 
-    render() {
+    const gereChangementSession = (nvIdSession) => {
+        setIdSession(nvIdSession)
+    }
+
         return (
             <BrowserRouter>
-                <Navbar />
+                <BarDeNavigation etatNavigation={etatNavigation}/>
                 <Switch>
                     <Route exact path="/">
                         <div className="container">
                             <div className="inner">
                                 <Header/>
-                                />
+
                             </div>
                         </div>
                     </Route>
                     <Route path="/about">
                         <About />
                     </Route>
-                    <Route path="/connexion">
+                    <Route path="/connexion" gereChangementSession={gereChangementSession}>
                         <Connexion />
                     </Route>
                     <Route path="*">
@@ -42,8 +48,8 @@ class RouteMission2 extends React.Component {
                     </Route>
                 </Switch>
             </BrowserRouter>
-        );
-    }
+        )
+
 }
 
 export default RouteMission2
