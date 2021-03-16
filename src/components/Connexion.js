@@ -13,10 +13,7 @@ const Connexion = props => {
     const handleSubmit = e => {
         e.preventDefault(); //Cette instruction empeche la propagation de la chaîne d'évènements (interface du bouton, -> action handle -> puis submit)
         alert("gaergerg")
-        axios.get('/login', {
-            firstName: 'Finn',
-            lastName: 'Williams'
-        })
+        axios.get('http://127.0.0.1:8000/api/',  )
             .then((response) => {
                 console.log(response);
             }, (error) => {
