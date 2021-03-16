@@ -2,6 +2,7 @@ import React from "react"
 
 import Header from "./Header"
 
+import axios from "axios";
 
 const Connexion = props => {
 
@@ -9,13 +10,18 @@ const Connexion = props => {
 
 
 
-
     const handleSubmit = e => {
-        e.preventDefault();
-        this.props.addTodoProps(this.state.title);
-        this.setState({
-            title: ""
-        });
+        e.preventDefault(); //Cette instruction empeche la propagation de la chaîne d'évènements (interface du bouton, -> action handle -> puis submit)
+        alert("gaergerg")
+        axios.get('/login', {
+            firstName: 'Finn',
+            lastName: 'Williams'
+        })
+            .then((response) => {
+                console.log(response);
+            }, (error) => {
+                console.log(error);
+            });
     };
 
 
