@@ -14,7 +14,7 @@ const ListeAtelier = props => {
 
 
     useEffect(async () => {
-         await axios.get('http://localhost:8000/api/ateliers'  )
+         await axios.get('http://localhost:8001/api/ateliers'  )
             .then((response) => {
                 console.log(response )
                 setAteliers(response.data)

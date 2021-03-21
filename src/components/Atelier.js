@@ -13,7 +13,7 @@ const Atelier = props => {
 
     useEffect(async () => {
 
-         await axios.get( `http://localhost:8000/api/ateliers/${id}` )
+         await axios.get( `http://localhost:8001/api/ateliers/${id}` )
             .then((response) => {
                 console.log(response.data )
                 setAtelier(response.data )

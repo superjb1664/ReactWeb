@@ -10,3 +10,6 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 Ajout de axios au projet
 npm install axios
 
+Ajout de la gestion des routes (pour les redirections)
+npm install hookrouter
+
