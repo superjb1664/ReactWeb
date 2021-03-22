@@ -8,7 +8,7 @@ const Deconnexion = props => {
     let history = useHistory();
     const handleSubmitDeconnexion = e => {
         e.preventDefault(); //Cette instruction empeche la propagation de la chaîne d'évènements (interface du bouton, -> action handle -> puis submit)
-        props.gereChangementSession("")
+        props.gereChangementSession("-1")
         history.push("/connexion");
     };
 

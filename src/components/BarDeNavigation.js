@@ -9,18 +9,18 @@ import NavDropdown from "react-bootstrap/cjs/NavDropdown";
 const BarDeNavigation = props => {
 
     let nav
-    if(props.idSession == "")
-        nav = <Navbar.Brand href="connexion">Connexion</Navbar.Brand>
+    if(props.idSession == "" || props.idSession == "-1")
+        nav = <Navbar.Brand href="/connexion">Connexion</Navbar.Brand>
     else
         nav = <>
-                <Navbar.Brand href="mesinfos">Mes informations</Navbar.Brand>
-                <Navbar.Brand href="deconnexion">Déconnexion</Navbar.Brand>
+                <Navbar.Brand href="/mesinfos">Mes informations</Navbar.Brand>
+                <Navbar.Brand href="/deconnexion">Déconnexion</Navbar.Brand>
             </>
 
     return (
             <Navbar bg="light" expand="lg">
                 <Navbar.Brand href="#home">Muscu</Navbar.Brand>
-                <Navbar.Brand href="ateliers">Ateliers</Navbar.Brand>
+                <Navbar.Brand href="/ateliers">Ateliers</Navbar.Brand>
                 {nav}
             </Navbar>
     )

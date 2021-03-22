@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 
 import Header from "./Header";
-
+import Table  from "react-bootstrap/Table";
 import axios from "axios";
 import Alert from "react-bootstrap/Alert";
 
@@ -19,8 +19,7 @@ const Connexion = props => {
     const handleSubmit = e => {
         e.preventDefault(); //Cette instruction empeche la propagation de la chaîne d'évènements (interface du bouton, -> action handle -> puis submit)
 
-
-        axios.post('http://localhost:8001/authentication_token', {
+        axios.post('http://localhost:8000/authentication_token', {
             login: identifiant,
             password:  motDePasse
             }
@@ -31,7 +30,7 @@ const Connexion = props => {
                 console.log(response.data);
                 props.gereChangementSession(response.data.token)
 
-                history.push("/accueilConnexion");
+              //  history.push("/accueilConnexion");
 
             }, (error) => {
                 //console.log("la");
@@ -54,7 +53,7 @@ const Connexion = props => {
             <div className="container">
                 <form onSubmit={handleSubmit} className="form-container">
                     <h3>Connexion</h3>
-                    <table>
+                    <Table>
                         <tbody>
                             <tr>
                                 <td>Identifiant</td>
@@ -86,10 +85,15 @@ const Connexion = props => {
                                     />
                                 </td>
                             </tr>
+                        <tr>
+                            <td colSpan="2" align='center'>
+                                <button className="input-submit">Me connecter</button>
+                            </td>
+                        </tr>
                         </tbody>
-                    </table>
+                    </Table>
 
-                    <button className="input-submit">Me connecter</button>
+
                 </form>
                 {msg}
             </div>

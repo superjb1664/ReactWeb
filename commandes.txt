@@ -13,3 +13,5 @@ npm install axios
 Ajout de la gestion des routes (pour les redirections)
 npm install hookrouter
 
+Après un git : npm update
+

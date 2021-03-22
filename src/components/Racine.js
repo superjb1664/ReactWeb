@@ -37,8 +37,6 @@ const Racine = () => {
     const gereChangementSession = (nvIdSessionTmp) => {
         const nvIdSession = nvIdSessionTmp
         setIdSession(idSession => nvIdSession)
-
-
         //navigate('/accueilConnexion', true, )
     }
 

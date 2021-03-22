@@ -12,24 +12,29 @@ const MesInfos = props => {
     //Liste des hooks : là où fait l'appel à des fonctions
     const [infosUser, setInfosUser] = useState({});
 
+    console.log("props.idSession : " + props.idSession)
     let idSession = props.idSession
-    useEffect(async () => {
 
-        var headers = 'Bearer '+ idSession
-        await axios.get( `http://localhost:8001/getCurrentUser` ,
+        useEffect(async () => {
 
-                   {
-                       headers: {
-                           'Authorization': headers
-                       }
-                   } )
-            .then((response) => {
-                console.log(response )
-                setInfosUser(response.data )
-            }, (error) => {
-                console.log(error)
-            });
-    }, [props.idSession]);
+            if(idSession != "-1" && idSession != ""  ) {
+                var headers = 'Bearer ' + idSession
+                await axios.get(`http://localhost:8000/getCurrentUser`,
+
+                    {
+                        headers: {
+                            'Authorization': headers
+                        }
+                    })
+                    .then((response) => {
+                        console.log(response)
+                        setInfosUser(response.data)
+                    }, (error) => {
+                        console.log(error)
+                    });
+            }
+        }, [props.idSession]);
+
 
     const handleSubmit = e => {
         e.preventDefault();
