@@ -87,7 +87,7 @@ const Connexion = props => {
                             </tr>
                         <tr>
                             <td colSpan="2" align='center'>
-                                <button className="input-submit">Me connecter</button>
+                                <button className="input-submit">Valider</button>
                             </td>
                         </tr>
                         </tbody>
