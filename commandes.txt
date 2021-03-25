@@ -2,6 +2,8 @@
 
 Ajouter bootstrap au projet :
 npm install react-bootstrap bootstrap
+npm install jquery popper.js
+npm install --save moment
 
 Pour ajouter le css :
 Dans le fichier index

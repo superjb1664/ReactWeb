@@ -19,7 +19,7 @@ const Connexion = props => {
     const handleSubmit = e => {
         e.preventDefault(); //Cette instruction empeche la propagation de la chaîne d'évènements (interface du bouton, -> action handle -> puis submit)
 
-        axios.post('http://localhost:8000/authentication_token', {
+        axios.post('http://127.0.0.1:8002/authentication_token', {
             login: identifiant,
             password:  motDePasse
             }
@@ -30,7 +30,7 @@ const Connexion = props => {
                 console.log(response.data);
                 props.gereChangementSession(response.data.token)
 
-              //  history.push("/accueilConnexion");
+                history.push("/accueilConnexion");
 
             }, (error) => {
                 //console.log("la");

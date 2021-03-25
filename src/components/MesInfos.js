@@ -19,7 +19,7 @@ const MesInfos = props => {
 
             if(idSession != "-1" && idSession != ""  ) {
                 var headers = 'Bearer ' + idSession
-                await axios.get(`http://localhost:8000/getCurrentUser`,
+                await axios.get(`http://localhost:8002/getCurrentUser`,
 
                     {
                         headers: {
