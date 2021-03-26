@@ -7,6 +7,8 @@ import Card from "react-bootstrap/Card";
 import Moment from "moment";
 import Alert from "react-bootstrap/Alert";
 
+import * as Constant from "./Constantes"
+
 const Atelier = props => {
     const [atelier, setAtelier] = useState({}) // {} parce que l'on attend un seul objet !
     const { id } = useParams()
@@ -14,7 +16,7 @@ const Atelier = props => {
 
     useEffect(async () => {
 
-         await axios.get( `http://127.0.0.1:8002/api/ateliers/${id}` )
+         await axios.get( Constant.API_URL + 'api/ateliers/'+ id )
             .then((response) => {
                 console.log(response.data )
                 setAtelier(response.data )
@@ -30,14 +32,15 @@ const Atelier = props => {
     const handleSubmit = e => {
         e.preventDefault(); //Cette instruction empeche la propagation de la chaîne d'évènements (interface du bouton, -> action handle -> puis submit)
 
-        axios.post('http://127.0.0.1:8002/api/commentaire/atelier/{id}', {
+        axios.post(Constant.API_URL + 'api/commentaire/atelier/'+id, {
             titre: titre,
             message:  message
             }
         )
             .then((response) => {
-                //   console.log("ici");
+                console.log(response);
                 atelier.commentaires.push(response)
+                setAtelier(atelier)
 
             }, (error) => {
                 console.log(error);
@@ -120,7 +123,7 @@ const Atelier = props => {
                                              }/>
                             </Card.Text>
                             <Card.Footer >
-                                <button className="input-submit">Me connecter</button>
+                                <button className="input-submit">Ajouter</button>
                             </Card.Footer>
                         </Card.Body>
                     </Card>

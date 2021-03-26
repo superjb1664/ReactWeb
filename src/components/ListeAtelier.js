@@ -7,11 +7,12 @@ import { Link } from "react-router-dom";
 import DetailAtelier from "./DetailAtelier";
 import axios from "axios";
 
+import * as Constant from "./Constantes"
 
 const ListeAtelier = props => {
     const [ateliers, setAteliers] = useState([]) //[] parce que l'on attend un tableau d'objet
     useEffect(async () => {
-         await axios.get('http://127.0.0.1:8002/api/ateliers'  )
+         await axios.get(Constant.API_URL + 'api/ateliers'  )
             .then((response) => {
                 console.log(response )
                 setAteliers(response.data)

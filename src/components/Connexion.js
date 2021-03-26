@@ -7,6 +7,8 @@ import Alert from "react-bootstrap/Alert";
 
 import {useHistory} from "react-router-dom";
 
+import * as Constant from "./Constantes"
+
 const Connexion = props => {
 
     //Liste des hooks : là où fait l'appel à des fonctions
@@ -19,7 +21,7 @@ const Connexion = props => {
     const handleSubmit = e => {
         e.preventDefault(); //Cette instruction empeche la propagation de la chaîne d'évènements (interface du bouton, -> action handle -> puis submit)
 
-        axios.post('http://127.0.0.1:8002/authentication_token', {
+        axios.post(Constant.API_URL + 'authentication_token', {
             login: identifiant,
             password:  motDePasse
             }

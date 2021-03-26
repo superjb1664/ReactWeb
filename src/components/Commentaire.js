@@ -9,7 +9,9 @@ import Card from "react-bootstrap/Card";
 const Commentaire = ({commentaire}) => {
         return (
             <Card>
-                <Card.Header>De <i>{commentaire.proprietaire === undefined ?  ( <> anonyme </> ) :( <> {commentaire.proprietaire.nomUtilisateur} { commentaire.proprietaire.prenomUtilisateur}</> ) } </i> le  {Moment(commentaire.date).format('DD/MM/YYYY à m:s')}
+                <Card.Header>De <i>{commentaire.proprietaire === null ?
+                    ( <> anonyme </> )
+                    :( <> {commentaire.proprietaire.nomUtilisateur} { commentaire.proprietaire.prenomUtilisateur}</> ) } </i> le  {Moment(commentaire.date).format('DD/MM/YYYY à h:m')}
                 </Card.Header>
                 <Card.Body>
                     <Card.Title> {commentaire.titre} </Card.Title>

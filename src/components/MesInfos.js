@@ -6,6 +6,7 @@ import axios from "axios";
 import Alert from "react-bootstrap/Alert";
 
 import {useHistory, useParams} from "react-router-dom";
+import * as Constant from "./Constantes"
 
 const MesInfos = props => {
 
@@ -19,7 +20,7 @@ const MesInfos = props => {
 
             if(idSession != "-1" && idSession != ""  ) {
                 var headers = 'Bearer ' + idSession
-                await axios.get(`http://localhost:8002/getCurrentUser`,
+                await axios.get(Constant.API_URL + 'getCurrentUser',
 
                     {
                         headers: {
@@ -51,9 +52,15 @@ const MesInfos = props => {
                         <tbody>
                         <tr>
                             <td>Identifiant</td>
-                            <td>{infosUser.userName}
-
-                            </td>
+                            <td>{infosUser.login}                            </td>
+                        </tr>
+                        <tr>
+                            <td>Nom</td>
+                            <td>{infosUser.nomUtilisateur}                            </td>
+                        </tr>
+                        <tr>
+                            <td>Nom</td>
+                            <td>{infosUser.prenomUtilisateur}                            </td>
                         </tr>
                         <tr>
                             <td>Mail</td>
