@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from "react"
-import { useHistory, useParams } from 'react-router-dom'
-import Table  from "react-bootstrap/Table";
+import React, {useState, useEffect} from "react"
+import {useHistory, useParams} from 'react-router-dom'
+import Table from "react-bootstrap/Table";
 import axios from "axios";
 import Commentaire from "./Commentaire";
 import Card from "react-bootstrap/Card";
@@ -11,43 +11,101 @@ import * as Constant from "./Constantes"
 
 const Atelier = props => {
     const [atelier, setAtelier] = useState({}) // {} parce que l'on attend un seul objet !
-    const { id } = useParams()
-
+    const {id} = useParams()
+    const idSession = props.idSession
 
     useEffect(async () => {
-
-         await axios.get( Constant.API_URL + 'api/ateliers/'+ id )
+        await axios.get(Constant.API_URL + 'api/ateliers/' + id)
             .then((response) => {
-                console.log(response.data )
-                setAtelier(response.data )
+                console.log(response.data)
+                setAtelier(response.data)
             }, (error) => {
                 console.log(error)
             });
-    }, []);
+    }, [props]);
     const atelierOK = atelier.commentaires === null
 
     const [titre, setTitre] = useState("");
     const [message, setMessage] = useState("");
 
-    const handleSubmit = e => {
+    /*
+    Gère l'ajout de commentaire : Anonyme ou connecté
+     */
+    const handleAjoutcommentaire = e => {
         e.preventDefault(); //Cette instruction empeche la propagation de la chaîne d'évènements (interface du bouton, -> action handle -> puis submit)
+        var headers = 'Bearer ' + idSession
+        if (idSession != -1 && idSession != "-1") {
+            //S'il n'y a pas de connexion c'est un post anonyme
+            axios.post(Constant.API_URL + 'api/commentaire/atelier/' + id,
+                {
+                    titre: titre,
+                    message: message
+                },
+                {
+                    headers: {
+                        'Authorization': headers
+                    }
+                },
+            )
+                .then((response) => {
+                    console.log(response.data);
+                    atelier.commentaires.push(response.data)
+                    setAtelier(atelier)
+                    setTitre("");
+                    setMessage("");
+                }, (error) => {
+                    console.log(error);
+                });
 
-        axios.post(Constant.API_URL + 'api/commentaire/atelier/'+id, {
-            titre: titre,
-            message:  message
-            }
+        } else {
+            //quelqu'un est connecté, le post n'est pas anonyme
+            axios.post(Constant.API_URL + 'api/commentaire/atelier/' + id,
+                {
+                    titre: titre,
+                    message: message
+                },
+            )
+                .then((response) => {
+                    console.log(response);
+                    atelier.commentaires.push(response)
+                    setAtelier(atelier)
+                }, (error) => {
+                    console.log(error);
+                });
+        }
+    }
+
+    /*
+    Gère la suppression d'un post de l'utilisateur conncté
+     */
+    const handleSupprimerCommentaire = idCommentaire => {
+        var headers = 'Bearer ' + idSession
+
+        axios.delete(Constant.API_URL + 'api/commentaire_ateliers/' + idCommentaire,
+            {
+                headers: {
+                    'Authorization': headers
+                }
+            },
         )
             .then((response) => {
-                console.log(response);
-                atelier.commentaires.push(response)
-                setAtelier(atelier)
-
+                setAtelier(
+                    {
+                        ...atelier,
+                        commentaires: atelier.commentaires.filter(
+                            commentaire => {
+                                return commentaire.id !== idCommentaire;
+                            }
+                        )
+                    })
             }, (error) => {
                 console.log(error);
             });
-    };
 
-    if(atelier )
+
+    }
+
+    if (atelier)
         return (
             <div className="container">
                 <h3>Atelier : {atelier.titre} </h3>
@@ -85,44 +143,45 @@ const Atelier = props => {
                         <>
                             Pas encore de commentaire
                         </>
-                    ):
+                    ) :
                     (
                         <>
                             {atelier.commentaires.map(commentaire => (
-                                <Commentaire key={commentaire.id} commentaire={commentaire}/>
+                                <Commentaire key={commentaire.id} commentaire={commentaire} login={props.login}
+                                             handleSupprimerCommentaire={handleSupprimerCommentaire}/>
                             ))}
                         </>
                     )
                 }
                 <h4>Ajouter mon commentaire :</h4>
-                <form onSubmit={handleSubmit}>
+                <form onSubmit={handleAjoutcommentaire}>
                     <Card>
                         <Card.Header>Nouveau commentaire
                         </Card.Header>
                         <Card.Body>
                             <Card.Title>
                                 <input type="text"
-                                           placeholder="Titre de mon commentaire"
-                                           name="Titre"
-                                           value={titre}
-                                           onChange={e => {
-                                               setTitre(e.target.value)
-                                           }
-                                           }/>
+                                       placeholder="Titre de mon commentaire"
+                                       name="Titre"
+                                       value={titre}
+                                       onChange={e => {
+                                           setTitre(e.target.value)
+                                       }
+                                       }/>
                             </Card.Title>
                             <Card.Text>
                                 <textarea
-                                             placeholder="Mon commentaire"
-                                             name="Message"
-                                             value={message}
-                                             cols="50"
-                                             raw="25"
-                                             onChange={e => {
-                                                 setMessage(e.target.value)
-                                             }
-                                             }/>
+                                    placeholder="Mon commentaire"
+                                    name="Message"
+                                    value={message}
+                                    cols="50"
+                                    raw="25"
+                                    onChange={e => {
+                                        setMessage(e.target.value)
+                                    }
+                                    }/>
                             </Card.Text>
-                            <Card.Footer >
+                            <Card.Footer>
                                 <button className="input-submit">Ajouter</button>
                             </Card.Footer>
                         </Card.Body>
@@ -131,12 +190,12 @@ const Atelier = props => {
 
                 </form>
             </div>
-       )
-    else
-    {
-        return  <div className="container">
+        )
+    else {
+        return <div className="container">
             En chargement...
         </div>
     }
+
 }
 export default Atelier

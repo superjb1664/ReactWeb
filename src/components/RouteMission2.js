@@ -20,14 +20,14 @@ import MesInfos from "./MesInfos"
 import About from "../pages/About"
 import NotMatch from "../pages/NotMatch"
 import BarDeNavigation from "./BarDeNavigation"
-
+import Seances from "./Seances";
 import axios from "axios";
 
 const RouteMission2 = props => {
     console.log("RM2 idSession" + props.idSession)
         return (
         <BrowserRouter>
-            <BarDeNavigation idSession={props.idSession}/>
+            <BarDeNavigation idSession={props.idSession} login={props.login}/>
             <Switch>
                 <Route exact path="/">
                     <div className="container">
@@ -38,7 +38,7 @@ const RouteMission2 = props => {
                     </div>
                 </Route>
                 <Route path="/atelier/:id" >
-                    <Atelier  />
+                    <Atelier  idSession={props.idSession} login={props.login}/>
                 </Route>
 
                 <Route path="/ateliers" >
@@ -62,6 +62,9 @@ const RouteMission2 = props => {
                 </Route>
                 <Route path="/mesinfos" >
                     <MesInfos idSession={props.idSession}/>
+                </Route>
+                <Route path="/seances">
+                    <Seances idSession={props.idSession}/>
                 </Route>
 
                 <Route path="*">

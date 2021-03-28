@@ -30,7 +30,7 @@ const Connexion = props => {
              //   console.log("ici");
                 setMsg(<Alert variant='success'> Indentification réussie </Alert>)
                 console.log(response.data);
-                props.gereChangementSession(response.data.token)
+                props.gereChangementSession(response.data.token, identifiant)
 
                 history.push("/accueilConnexion");
 

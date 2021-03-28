@@ -23,20 +23,31 @@ import axios from "axios";
 
 const Racine = () => {
     const [idSession, setIdSession] = useState( "" );
+    const [login, setlogin] = useState( "" );
 
 
     useEffect(() => {
         const idSessionTmp = String(localStorage.getItem("idSession") || -1)
+        const loginTmp = String(localStorage.getItem("login") || -1)
         setIdSession(idSessionTmp)
+        setlogin(loginTmp)
     }, [])
 
     useEffect(() => {
         localStorage.setItem("idSession", idSession)
     }, [idSession])
 
-    const gereChangementSession = (nvIdSessionTmp) => {
+    useEffect(() => {
+        localStorage.setItem("login", login)
+    }, [login])
+
+    const gereChangementSession = (nvIdSessionTmp,login) => {
+        console.log("nvIdSessionTmp " + nvIdSessionTmp)
+        console.log("login " +  login)
         const nvIdSession = nvIdSessionTmp
         setIdSession(idSession => nvIdSession)
+        const nvLogin = login
+        setlogin(login => nvLogin)
         //navigate('/accueilConnexion', true, )
     }
 
@@ -46,7 +57,7 @@ const Racine = () => {
         <>
             <RouteMission2
                 gereChangementSession={gereChangementSession}
-                idSession={idSession}/>
+                idSession={idSession} login={login}/>
         </>
     );
 

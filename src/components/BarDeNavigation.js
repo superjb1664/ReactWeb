@@ -13,14 +13,17 @@ const BarDeNavigation = props => {
         nav = <Navbar.Brand href="/connexion">Connexion</Navbar.Brand>
     else
         nav = <>
+
                 <Navbar.Brand href="/mesinfos">Mes informations</Navbar.Brand>
                 <Navbar.Brand href="/deconnexion">Déconnexion</Navbar.Brand>
+            <Navbar.Text>Connecté : {props.login}</Navbar.Text>
             </>
 
     return (
             <Navbar bg="light" expand="lg">
                 <Navbar.Brand href="#home">Muscu</Navbar.Brand>
-                <Navbar.Brand href="/ateliers">Ateliers</Navbar.Brand>
+                <Navbar.Brand href="/ateliers">Les ateliers</Navbar.Brand>
+                <Navbar.Brand href="/seances">Mes séances</Navbar.Brand>
                 {nav}
             </Navbar>
     )
