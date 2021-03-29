@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react"
 import {Link, useHistory, useParams} from 'react-router-dom'
 
-import axios from "axios";
+import axios from "./AxiosInterceptor";
 import Moment from 'moment'
 
 import Card from "react-bootstrap/Card";

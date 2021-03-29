@@ -21,13 +21,13 @@ import About from "../pages/About"
 import NotMatch from "../pages/NotMatch"
 import BarDeNavigation from "./BarDeNavigation"
 import Seances from "./Seances";
-import axios from "axios";
+import axios from "./AxiosInterceptor";
 
 const RouteMission2 = props => {
-    console.log("RM2 idSession" + props.idSession)
+    console.log("RM2 token" + props.token)
         return (
         <BrowserRouter>
-            <BarDeNavigation idSession={props.idSession} login={props.login}/>
+            <BarDeNavigation token={props.token} login={props.login}/>
             <Switch>
                 <Route exact path="/">
                     <div className="container">
@@ -38,7 +38,7 @@ const RouteMission2 = props => {
                     </div>
                 </Route>
                 <Route path="/atelier/:id" >
-                    <Atelier  idSession={props.idSession} login={props.login}/>
+                    <Atelier  token={props.token} login={props.login}/>
                 </Route>
 
                 <Route path="/ateliers" >
@@ -61,10 +61,10 @@ const RouteMission2 = props => {
                     <Deconnexion gereChangementSession={props.gereChangementSession}/>
                 </Route>
                 <Route path="/mesinfos" >
-                    <MesInfos idSession={props.idSession}/>
+                    <MesInfos token={props.token}/>
                 </Route>
                 <Route path="/seances">
-                    <Seances idSession={props.idSession}/>
+                    <Seances token={props.token}/>
                 </Route>
 
                 <Route path="*">

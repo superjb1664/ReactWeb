@@ -1,32 +1,21 @@
 import React, { useState, useEffect } from "react"
-import axios from "axios";
-import * as Constant from "./Constantes";
+import axios from "./AxiosInterceptor";
 import Sequence from "./Sequence";
 import ListGroup from "react-bootstrap/ListGroup"
 import ListGroupItem from "react-bootstrap/ListGroupItem"
 
-const ListeProgrammesTypes = props => {
+const ListeProgrammesTypes = (props) => {
 
-    console.log("props.idSession " + props.idSession)
-    const idSession =  props.idSession
-    console.log("idSession " +idSession)
     const [listeSequences, setListeSequences] = useState([]) //[] parce que l'on attend un tableau d'objet
     useEffect(async () => {
-    //    console.log("idSession " + props.idSession)
-    //    console.log("idSession " +idSession)
-        var headers = 'Bearer ' + props.idSession
-        await axios.get('api/sequencetheoriques'
-      ,{  headers: {
-                'Authorization': headers
-            }
-            }, )
+        await axios.get('api/sequencetheoriques')
             .then((response) => {
                 console.log(response )
                 setListeSequences(response.data)
             }, (error) => {
                 console.log(error)
             });
-    },[props] );
+    },[props]  );
 
     var nbResult = listeSequences.length
     return (
@@ -40,7 +29,7 @@ const ListeProgrammesTypes = props => {
                             {
                             listeSequences.map(sequence => (
                                 <ListGroup.Item style={{width: "100%"}}>
-                                    <Sequence key={sequence.id} idSession={props.idSession} sequence={sequence} style={{width: "100%"}}/>
+                                    <Sequence key={sequence.id}   sequence={sequence} style={{width: "100%"}}/>
                                 </ListGroup.Item>
                             ))
                             }

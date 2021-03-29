@@ -2,12 +2,12 @@ import React, {useState} from "react";
 
 import Header from "./Header";
 import Table  from "react-bootstrap/Table";
-import axios from "axios";
+import axios from "./AxiosInterceptor";
 import Alert from "react-bootstrap/Alert";
 
 import {useHistory} from "react-router-dom";
 
-import * as Constant from "./Constantes"
+
 
 const Connexion = props => {
 
@@ -30,7 +30,7 @@ const Connexion = props => {
              //   console.log("ici");
                 setMsg(<Alert variant='success'> Indentification réussie </Alert>)
                 console.log(response.data);
-                props.gereChangementSession(response.data.token, identifiant)
+                props.gereChangementSession(response.data.token,response.data.refresh_token, identifiant )
 
                 history.push("/accueilConnexion");
 

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react"
 import { useHistory, useParams } from 'react-router-dom'
-import axios from "axios";
+import axios from "./AxiosInterceptor";
 import Alert from "react-bootstrap/Alert";
 
 const Deconnexion = props => {
@@ -8,7 +8,7 @@ const Deconnexion = props => {
     let history = useHistory();
     const handleSubmitDeconnexion = e => {
         e.preventDefault(); //Cette instruction empeche la propagation de la chaîne d'évènements (interface du bouton, -> action handle -> puis submit)
-        props.gereChangementSession("-1","-1")
+        props.gereChangementSession("-1","-1","-1")
         history.push("/connexion");
     };
 

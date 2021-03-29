@@ -18,7 +18,7 @@ const Seances = props => {
                 </Row>
                 <Row lg={2}>
                     <Col>
-                        <ListeMesActivites idSession={props.idSession}/>
+                        <ListeMesActivites token={props.token}/>
                     </Col>
                     <Col>
 
@@ -30,12 +30,12 @@ const Seances = props => {
                             </Row>
                             <Row lg={1}>
 
-                                    <ListeProgrammesTypes idSession={props.idSession}/>
+                                    <ListeProgrammesTypes  />
 
                             </Row>
                             <Row lg={1}>
 
-                                    <ListeProgrammesPersos idSession={props.idSession}/>
+                                    <ListeProgrammesPersos   />
 
 
                             </Row>

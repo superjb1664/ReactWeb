@@ -2,30 +2,29 @@ import React, {useEffect, useState} from "react";
 
 import Header from "./Header";
 
-import axios from "axios";
+import axios from "./AxiosInterceptor";
 import Alert from "react-bootstrap/Alert";
 
 import {useHistory, useParams} from "react-router-dom";
-import * as Constant from "./Constantes"
 import Table from "react-bootstrap/Table"
 const MesInfos = props => {
 
     //Liste des hooks : là où fait l'appel à des fonctions
     const [infosUser, setInfosUser] = useState({});
 
-    console.log("props.idSession : " + props.idSession)
-    let idSession = props.idSession
+    console.log("props.token : " + props.token)
+    let token = props.token
 
         useEffect(async () => {
 
-            if(idSession != "-1" && idSession != ""  ) {
-                var headers = 'Bearer ' + idSession
+            if(token != "-1" && token != ""  ) {
+                var headers = 'Bearer ' + token
                 await axios.get('getCurrentUser',
-                    {
+                   /* {
                         headers: {
                             'Authorization': headers
                         }
-                    })
+                    }*/)
                     .then((response) => {
                         console.log(response)
                         setInfosUser(response.data)
@@ -33,7 +32,7 @@ const MesInfos = props => {
                         console.log(error)
                     });
             }
-        }, [props.idSession]);
+        }, [props.token]);
 
 
     const handleSubmit = e => {

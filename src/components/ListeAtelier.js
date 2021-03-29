@@ -5,9 +5,9 @@ import {v4 as uuidv4} from "uuid";
 import Header from "./Header"
 import { Link } from "react-router-dom";
 import DetailAtelier from "./DetailAtelier";
-import axios from "axios";
+import axios from "./AxiosInterceptor";
 
-import * as Constant from "./Constantes"
+
 
 const ListeAtelier = props => {
     const [ateliers, setAteliers] = useState([]) //[] parce que l'on attend un tableau d'objet

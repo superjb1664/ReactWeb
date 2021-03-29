@@ -1,18 +1,18 @@
 import React, {useState, useEffect} from "react"
 import {useHistory, useParams} from 'react-router-dom'
 import Table from "react-bootstrap/Table";
-import axios from "axios";
+import axios from "./AxiosInterceptor";
 import Commentaire from "./Commentaire";
 import Card from "react-bootstrap/Card";
 import Moment from "moment";
 import Alert from "react-bootstrap/Alert";
 
-import * as Constant from "./Constantes"
+
 
 const Atelier = props => {
     const [atelier, setAtelier] = useState({}) // {} parce que l'on attend un seul objet !
     const {id} = useParams()
-    const idSession = props.idSession
+    const token = props.token
 
     useEffect(async () => {
         await axios.get('api/ateliers/' + id)
@@ -33,19 +33,19 @@ const Atelier = props => {
      */
     const handleAjoutcommentaire = e => {
         e.preventDefault(); //Cette instruction empeche la propagation de la chaîne d'évènements (interface du bouton, -> action handle -> puis submit)
-        var headers = 'Bearer ' + idSession
-        if (idSession != -1 && idSession != "-1") {
+        var headers = 'Bearer ' + token
+        if (token != -1 && token != "-1") {
             //S'il n'y a pas de connexion c'est un post anonyme
             axios.post('api/commentaire/atelier/' + id,
                 {
                     titre: titre,
                     message: message
-                },
+                },/*
                 {
                     headers: {
                         'Authorization': headers
                     }
-                },
+                },*/
             )
                 .then((response) => {
                     console.log(response.data);
@@ -79,14 +79,14 @@ const Atelier = props => {
     Gère la suppression d'un post de l'utilisateur conncté
      */
     const handleSupprimerCommentaire = idCommentaire => {
-        var headers = 'Bearer ' + idSession
+        var headers = 'Bearer ' + token
 
         axios.delete('api/commentaire_ateliers/' + idCommentaire,
-            {
+            /*{
                 headers: {
                     'Authorization': headers
                 }
-            },
+            },*/
         )
             .then((response) => {
                 setAtelier(
