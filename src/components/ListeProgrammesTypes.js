@@ -15,7 +15,7 @@ const ListeProgrammesTypes = props => {
     //    console.log("idSession " + props.idSession)
     //    console.log("idSession " +idSession)
         var headers = 'Bearer ' + props.idSession
-        await axios.get(Constant.API_URL + 'api/sequencetheoriques'
+        await axios.get('api/sequencetheoriques'
       ,{  headers: {
                 'Authorization': headers
             }

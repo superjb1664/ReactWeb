@@ -15,7 +15,7 @@ const Atelier = props => {
     const idSession = props.idSession
 
     useEffect(async () => {
-        await axios.get(Constant.API_URL + 'api/ateliers/' + id)
+        await axios.get('api/ateliers/' + id)
             .then((response) => {
                 console.log(response.data)
                 setAtelier(response.data)
@@ -36,7 +36,7 @@ const Atelier = props => {
         var headers = 'Bearer ' + idSession
         if (idSession != -1 && idSession != "-1") {
             //S'il n'y a pas de connexion c'est un post anonyme
-            axios.post(Constant.API_URL + 'api/commentaire/atelier/' + id,
+            axios.post('api/commentaire/atelier/' + id,
                 {
                     titre: titre,
                     message: message
@@ -59,7 +59,7 @@ const Atelier = props => {
 
         } else {
             //quelqu'un est connecté, le post n'est pas anonyme
-            axios.post(Constant.API_URL + 'api/commentaire/atelier/' + id,
+            axios.post('api/commentaire/atelier/' + id,
                 {
                     titre: titre,
                     message: message
@@ -81,7 +81,7 @@ const Atelier = props => {
     const handleSupprimerCommentaire = idCommentaire => {
         var headers = 'Bearer ' + idSession
 
-        axios.delete(Constant.API_URL + 'api/commentaire_ateliers/' + idCommentaire,
+        axios.delete('api/commentaire_ateliers/' + idCommentaire,
             {
                 headers: {
                     'Authorization': headers

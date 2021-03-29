@@ -48,6 +48,10 @@ const Racine = () => {
         setIdSession(idSession => nvIdSession)
         const nvLogin = login
         setlogin(login => nvLogin)
+        if(nvIdSession != "-1" && nvIdSession != -1)
+        {
+            axios.defaults.headers.common['Authorization'] = AUTH_TOKEN;
+        }
         //navigate('/accueilConnexion', true, )
     }
 

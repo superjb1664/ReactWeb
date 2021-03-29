@@ -12,7 +12,7 @@ import * as Constant from "./Constantes"
 const ListeAtelier = props => {
     const [ateliers, setAteliers] = useState([]) //[] parce que l'on attend un tableau d'objet
     useEffect(async () => {
-         await axios.get(Constant.API_URL + 'api/ateliers'  )
+         await axios.get('api/ateliers'  )
             .then((response) => {
                 console.log(response )
                 setAteliers(response.data)

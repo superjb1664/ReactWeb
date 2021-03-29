@@ -21,7 +21,7 @@ const Connexion = props => {
     const handleSubmit = e => {
         e.preventDefault(); //Cette instruction empeche la propagation de la chaîne d'évènements (interface du bouton, -> action handle -> puis submit)
 
-        axios.post(Constant.API_URL + 'authentication_token', {
+        axios.post( 'authentication_token', {
             login: identifiant,
             password:  motDePasse
             }

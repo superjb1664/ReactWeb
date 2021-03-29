@@ -20,7 +20,7 @@ const MesInfos = props => {
 
             if(idSession != "-1" && idSession != ""  ) {
                 var headers = 'Bearer ' + idSession
-                await axios.get(Constant.API_URL + 'getCurrentUser',
+                await axios.get('getCurrentUser',
                     {
                         headers: {
                             'Authorization': headers

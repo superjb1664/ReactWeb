@@ -11,7 +11,7 @@ const ListeProgrammesPersos = props => {
     const [listeSequences, setListeSequences] = useState([]) //[] parce que l'on attend un tableau d'objet
     useEffect(async () => {
         var headers = 'Bearer ' + props.idSession
-        await axios.get(Constant.API_URL + 'api/sequencetheoriques' ,
+        await axios.get('api/sequencetheoriques' ,
             {
                 headers: {
                     'Authorization': headers
