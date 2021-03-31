@@ -6,7 +6,7 @@ import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
 import NavDropdown from "react-bootstrap/cjs/NavDropdown";
 
-const BarDeNavigation = props => {
+const BarreDeNavigation = props => {
 
     let nav
     if(props.token == "" || props.token == "-1")
@@ -28,4 +28,4 @@ const BarDeNavigation = props => {
             </Navbar>
     )
 }
-export default BarDeNavigation
+export default BarreDeNavigation

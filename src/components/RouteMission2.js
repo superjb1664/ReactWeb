@@ -19,7 +19,7 @@ import MesInfos from "./MesInfos"
 /*Les pages statiques*/
 import About from "../pages/About"
 import NotMatch from "../pages/NotMatch"
-import BarDeNavigation from "./BarDeNavigation"
+import BarreDeNavigation from "./BarreDeNavigation"
 import Seances from "./Seances";
 import axios from "./AxiosInterceptor";
 
@@ -27,7 +27,7 @@ const RouteMission2 = props => {
     console.log("RM2 token" + props.token)
         return (
         <BrowserRouter>
-            <BarDeNavigation token={props.token} login={props.login}/>
+            <BarreDeNavigation token={props.token} login={props.login}/>
             <Switch>
                 <Route exact path="/">
                     <div className="container">

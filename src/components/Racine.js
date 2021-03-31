@@ -18,7 +18,7 @@ import Deconnexion from "./Deconnexion";
 /*Les pages statiques*/
 import About from "../pages/About"
 import NotMatch from "../pages/NotMatch"
-import BarDeNavigation from "./BarDeNavigation"
+import BarreDeNavigation from "./BarreDeNavigation"
 import axios from "./AxiosInterceptor";
 
 const Racine = () => {
